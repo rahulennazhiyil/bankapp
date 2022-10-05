@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-login',
@@ -12,58 +14,46 @@ export class LoginComponent implements OnInit {
 
   acno=""
   psw=""
-  
-  userDetails:any={
-    1000:{acno:1000,username:"amal",pass:123,balance:10000},
-    1002:{acno:1002,username:"anu",pass:123,balance:20000},
-    1003:{acno:1003,username:"abi",pass:123,balance:30000},
-    1004:{acno:1004,username:"arun",pass:123,balance:40000}
 
-  }
 
-  constructor() { }
+  constructor(private router:Router,private ds:DataService) { }
 
   ngOnInit(): void {
   }
 
-  // login(){
-  //   var acnum=this.acno
-  //   var psw=this.psw
-  //   let userDetails=this.userDetails
-  //   if(acnum in userDetails){
-  //     if(psw==userDetails[acnum]['pass']){
-  //       alert('Login Successfully')
-  //     }
-  //     else{
-  //       alert('incorrect password')
-  //     }
-  //   }
-  //   else{
-  //     alert("user doesn't exist or incorrect account number")
-  //   }
-  // }
-
-
-
-  login(a:any,b:any){
-// console.log(a.value);
-// console.log(b.value);
-
-    var acnum=a.value
-    var psw=b.value
-    let userDetails=this.userDetails
-    if(acnum in userDetails){
-      if(psw==userDetails[acnum]['pass']){
-        alert('Login Successfully')
-      }
-      else{
-        alert('incorrect password')
-      }
+  login(){
+    var acnum=this.acno
+    var psw=this.psw
+    const result=this.ds.login(acnum,psw)
+    if(result){
+    alert('login success')
+    this.router.navigateByUrl('dashboard')
     }
-    else{
-      alert("user doesn't exist or incorrect account number")
-    }
+
+    
   }
+
+
+
+//   login(a:any,b:any){
+// // console.log(a.value);
+// // console.log(b.value);
+
+//     var acnum=a.value
+//     var psw=b.value
+//     let userDetails=this.userDetails
+//     if(acnum in userDetails){
+//       if(psw==userDetails[acnum]['pass']){
+//         alert('Login Successfully')
+//       }
+//       else{
+//         alert('incorrect password')
+//       }
+//     }
+//     else{
+//       alert("user doesn't exist or incorrect account number")
+//     }
+//   }
 
 
   // accnoChange(event:any){
