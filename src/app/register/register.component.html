@@ -1,17 +1,14 @@
 <div class="container w-50 mt-5" style="background-color: rgba(174, 217, 238, 0.5); border-radius: 15px;">
     <h1 class="text-center"> REGISTER NOW!</h1>
-     <form (ngSubmit)="Register()">
+     <form (ngSubmit)="Register()" [formGroup]="registerForm">
             <div class="p-2 ">
-                
-                <input name="usernmae" type="text" placeholder="Enter your usernmae" [(ngModel)]="uname" id="uuname" class="form-control">
+                <input name="usernmae" type="text" placeholder="Enter your usernmae" formControlName="uname" id="uuname" class="form-control">
             </div>
             <div class="p-2 ">
-                
-                <input name="acno" type="text" placeholder="Enter account number" [(ngModel)]="acno" id="acccno" class="form-control">
+                <input name="acno" type="text" placeholder="Enter account number" formControlName="acno" id="acccno" class="form-control">
             </div>
             <div class="mt-3 p-2">
-                
-                <input name="psw" type="text" placeholder="password" [(ngModel)]="pswd" id="psswd" class="form-control">
+                <input name="psw" type="text" placeholder="password" formControlName="pswd" id="psswd" class="form-control">
             </div>
             <div class=" mt-3 p-2">
                 <button type="submit" class="btn btn-success rounded-sm">Register</button>
