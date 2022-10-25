@@ -14,7 +14,9 @@ export class RegisterComponent implements OnInit {
   pswd=""
 // model to registration form
   registerForm=this.fb.group({
-    uname:['',[Validators.required,Validators.pattern('[a-zA-Z]+')]],acno:['',[]],pswd:['',[]]
+    uname:['',[Validators.required,Validators.pattern('[a-zA-Z]+')]],
+    acno:['',[Validators.required,Validators.pattern('[0-9]+')]],
+    pswd:['',[Validators.required,Validators.pattern('[a-zA-Z0-9]+')]]
 
   })
 
@@ -24,22 +26,31 @@ export class RegisterComponent implements OnInit {
   }
 
   Register(){
+
+    //to know the errors while validation
+    // console.log(this.registerForm.get('uname')?.errors);
+    
     var uname=this.registerForm.value.uname
     var acno=this.registerForm.value.acno
     var pswd=this.registerForm.value.pswd
 
+    if(this.registerForm.valid){
     
-    const result=this.ds.register(acno,uname,pswd)
+    this.ds.register(acno,uname,pswd).subscribe((result:any)=>{
 
-    if(result){
-      alert('registered succuessfully')
-      this.router.navigateByUrl('')
-    }
-    else{
-      alert('user already exist')
-    }
-    // let userDetails=this.ds.userDetails
-
-    // alert('Registered Successfully')
+   
+    alert(result.message)
+    this.router.navigateByUrl('') 
+  },
+  result=>{
+    alert(result.error.message)
   }
+  )
+  }
+  
+  else{
+    alert('form invalid')
+  }
+  }
+
 }

@@ -1,0 +1,10 @@
+To create http request
+    - import HttpClientModule
+        -class name HttpClientModule
+
+
+Api request is a asynchronous request so to solve asynchronous request
+in typescript we use RxJs method observable... there is chance for 
+                                 (js promise)                            resolve   -- subscribe()
+                                                                                &
+                                                                          reject -- catch()

@@ -1,0 +1,6 @@
+<div *ngIf="item" class="class text-center container mt-3 w-50" style="background-color: rgba(255, 255, 255, 0.2); border-radius: 15px;" >
+    <h2> Do You Want To Delete This Account {{item}} ?</h2>
+    <button class="btn btn rounded-sm " (click)="delete()">YES</button>
+    <button class="ms-3 btn btn rounded-sm"(click)="cancel()">NO</button>
+
+</div>
